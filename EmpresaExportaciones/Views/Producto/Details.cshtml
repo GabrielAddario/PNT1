@@ -1,0 +1,51 @@
+﻿@model EmpresaExportaciones.Models.Producto
+
+@{
+    ViewData["Title"] = "Detalle del Producto";
+}
+
+<div class="container">
+    <h1 class="text-center display-4">Detalle del Producto</h1>
+
+    <div>
+        <h4 class="text-center">Producto</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.nombre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.descripcion)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.descripcion)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.precio)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.precio)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.stock)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.stock)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.tipoDeProducto)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.tipoDeProducto)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="text-center">
+        <a asp-action="Edit" asp-route-id="@Model?.id" class="btn btn-azul">Editar Producto</a> |
+        <a asp-action="Index" class="btn btn-azul">Volver a la Lista</a>
+    </div>
+</div>

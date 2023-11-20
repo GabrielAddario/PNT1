@@ -1,0 +1,49 @@
+﻿@model EmpresaExportaciones.Models.Cliente
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<div class="container mt-4">
+    <!-- Centra y agrega un poco de espacio en la parte superior -->
+    <h1 class="text-center display-4">Editar Registro</h1>
+
+    <h5 class="text-center">En esta sección se puede editar un registro</h5>
+    <hr />
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="id" />
+                <div class="form-group mb-3">
+                    <label asp-for="dniCliente" class="control-label"></label>
+                    <input asp-for="dniCliente" class="form-control" />
+                    <span asp-validation-for="dniCliente" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="nombreCliente" class="control-label"></label>
+                    <input asp-for="nombreCliente" class="form-control" />
+                    <span asp-validation-for="nombreCliente" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="apellidoCliente" class="control-label"></label>
+                    <input asp-for="apellidoCliente" class="form-control" />
+                    <span asp-validation-for="apellidoCliente" class="text-danger"></span>
+                </div>
+                <div class="form-group text-center">
+                    <br />
+                    <input type="submit" value="Guardar" class="btn btn-azul" />
+                    <a asp-action="Index" class="btn btn-azul">Volver a la lista</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

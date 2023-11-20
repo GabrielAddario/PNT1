@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-fluid text-center">
+    <div class="jumbotron">
+        <h1 class="display-4" style="font-weight: bold;">ExportaGlobal S.A.</h1>
+
+        <br />
+        <h5>Conectando Mercados Globales - Líder en Exportaciones de Calidad Internacional</h5>
+        <br />
+        <br />
+        <h4>
+            ¡Bienvenido al Sistema de Gestión de Productos Importados de nuestra empresa! Este sistema
+            te permite gestionar de manera eficiente la información de productos, clientes y pedidos. Puedes añadir, editar y 
+            eliminar productos, así como realizar un seguimiento de los clientes y administrar las transacciones. La interfaz 
+            amigable y las funciones intuitivas facilitan la navegación. 
+           ¡Explora y descubre cómo este sistema simplifica nuestras operaciones diarias!
+        </h4>
+       <br />
+        <img src="~/css/Imagenes/imagen1.jpg" alt="Descripción de la imagen" class="img-fluid" style="width: 300px; height: auto; margin-right: 10px;">
+        <img src="~/css/Imagenes/imagen2.jpg" alt="Descripción de la imagen" class="img-fluid" style="width: 300px; height: auto; margin-right: 10px;">
+        <img src="~/css/Imagenes/imagen3.jpg" alt="Descripción de la imagen" class="img-fluid" style="width: 300px; height: auto;">
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <!-- Enlaces para redirigir a las acciones de los controladores -->
+        <div class="row">
+            <div class="col-md-3">
+                <a href="@Url.Action("Create", "Pedido")" class="btn btn-primary btn-lg btn-block">GENERAR COMPRA</a>
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("Index", "Cliente")" class="btn btn-primary btn-lg btn-block">PEDIDOS POR CLEINTE</a>
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("Index", "Pedido")" class="btn btn-primary btn-lg btn-block">LISTAR PEDIDOS</a>
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("Index", "Producto")" class="btn btn-primary btn-lg btn-block">LISTAR PRODUCTOS</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

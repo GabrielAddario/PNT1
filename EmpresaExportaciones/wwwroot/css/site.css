@@ -1,0 +1,53 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: cadetblue;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+    .navbar-nav .nav-link {
+        font-weight: bold;
+    }
+
+    .navbar-nav .nav-item.active .nav-link {
+        font-size: 40px;
+        color: white;
+    }
+
+.btn-azul {
+    background-color: forestgreen;
+    color: white;
+}
+
+.btn-rojo {
+    background-color: red;
+    color: white;
+}
+
+h1.display-4 {
+    font-weight: bold;
+}
+
+
+
+

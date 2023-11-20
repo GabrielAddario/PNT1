@@ -1,0 +1,62 @@
+﻿@model IEnumerable<EmpresaExportaciones.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Lista de Clientes";
+}
+
+<div class="container mt-4">
+    <!-- Centra y agrega un poco de espacio en la parte superior -->
+    <h1 class="text-center display-4">Lista de clientes</h1>
+    <h5 class="text-center">En esta lista podrá encontrar todos sus clientes</h5>
+
+    <p class="text-center">
+        <a asp-action="Create" class="btn btn-azul">Crear Nuevo Cliente</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dniCliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nombreCliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.apellidoCliente)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dniCliente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombreCliente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.apellidoCliente)
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-azul">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.id" class="btn btn-azul">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-rojo">Eliminar</a> |
+                        <a asp-action="PedidosCliente" asp-route-id="@item.id" class="btn btn-azul">Pedidos</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

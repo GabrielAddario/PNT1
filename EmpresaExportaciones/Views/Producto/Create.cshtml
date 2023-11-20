@@ -1,0 +1,56 @@
+﻿@model EmpresaExportaciones.Models.Producto
+
+@{
+    ViewData["Title"] = "Crear Producto";
+}
+
+<div class="container">
+    <h1 class="text-center display-4">Crear Producto</h1>
+    <hr />
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group mb-3">
+                    <label asp-for="nombre" class="control-label"></label>
+                    <input asp-for="nombre" class="form-control" />
+                    <span asp-validation-for="nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="descripcion" class="control-label"></label>
+                    <input asp-for="descripcion" class="form-control" />
+                    <span asp-validation-for="descripcion" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="precio" class="control-label"></label>
+                    <input asp-for="precio" class="form-control" />
+                    <span asp-validation-for="precio" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="stock" class="control-label"></label>
+                    <input asp-for="stock" class="form-control" />
+                    <span asp-validation-for="stock" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="tipoDeProducto" class="control-label"></label>
+                    <select asp-for="tipoDeProducto" class="form-control" asp-items="Html.GetEnumSelectList<TipoDeProducto>()">
+                        <option selected="selected" value="">Tipo de producto</option>
+                    </select>
+                    <span asp-validation-for="tipoDeProducto" class="text-danger"></span>
+                </div>
+                <div class="form-group text-center">
+                    <br />
+                    <input type="submit" value="Agregar" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-azul">Volver a la Lista</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,54 @@
+﻿@model EmpresaExportaciones.Models.Producto
+
+@{
+    ViewData["Title"] = "Eliminar Producto";
+}
+
+<div class="container">
+    <h1 class="text-center display-4">Eliminar Producto</h1>
+
+    <div>
+        <h4 class="text-center">Producto</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.nombre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.descripcion)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.descripcion)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.precio)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.precio)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.stock)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.stock)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.tipoDeProducto)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.tipoDeProducto)
+            </dd>
+        </dl>
+    </div>
+
+    <form asp-action="Delete" onsubmit="return confirm('¿Desea eliminar este producto?');" class="text-center">
+        <input type="hidden" asp-for="id" />
+        <br />
+        <input type="submit" value="Borrar Producto" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-azul">Volver a la Lista</a>
+    </form>
+</div>
+

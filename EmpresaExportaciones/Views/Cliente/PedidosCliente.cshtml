@@ -1,0 +1,43 @@
+﻿@model List<EmpresaExportaciones.Models.Pedido>
+
+<div class="text-center mt-4">
+    <!-- Alinea al centro y agrega un poco de espacio superior -->
+    <h1 class="text-center display-4">Pedidos del Cliente</h1>
+    <h5 class="text-center">Estos son los pedidos del cliente seleccionado</h5>
+    <br />
+
+    @if (Model.Any())
+    {
+        <div class="table-responsive">
+            <!-- Hace que la tabla sea responsive para dispositivos pequeños -->
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>CANTIDAD</th>
+                        <th>PRECIO</th>
+                        <th>FECHA</th>
+                        <th>ESTADO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var pedido in Model)
+                    {
+                        <tr>
+                            <td>@pedido.id</td>
+                            <td>@pedido.cantProducto</td>
+                            <td>@pedido.precio</td>
+                            <td>@pedido.fecha.ToShortDateString()</td>
+                            <td>@pedido.estado</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p>No hay pedidos para este cliente.</p>
+    }
+</div>
+

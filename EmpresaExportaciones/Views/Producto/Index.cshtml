@@ -1,0 +1,73 @@
+﻿@model IEnumerable<EmpresaExportaciones.Models.Producto>
+
+@{
+    ViewData["Title"] = "Lista de productos";
+}
+
+<div class="container">
+    <h1 class="text-center display-4">Lista de Productos</h1>
+    <h5 class="text-center">En esta lista podra encontrar todos sus productos</h5>
+
+    <p class="text-center">
+        <a asp-action="Create" class="btn btn-azul">Crear Nuevo Producto</a>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.descripcion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.precio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.stock)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tipoDeProducto)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.precio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.stock)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tipoDeProducto)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-azul">Editar</a> |
+                            <a asp-action="Details" asp-route-id="@item.id" class="btn btn-azul">Detalles</a> |
+                            <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-rojo">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
