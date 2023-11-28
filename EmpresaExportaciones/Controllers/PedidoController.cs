@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EmpresaExportaciones.Context;
@@ -61,13 +57,28 @@ namespace EmpresaExportaciones.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,ClienteId,ProductoId,cantProducto,precio,fecha,estado")] Pedido pedido)
         {
-            
-            _context.Add(pedido);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "id", "apellidoCliente", pedido.ClienteId);
-            ViewData["ProductoId"] = new SelectList(_context.Productos, "id", "descripcion", pedido.ProductoId);
-            return View(pedido);
+            var productoActual = await _context.Productos.FindAsync(pedido.ProductoId);
+            if (productoActual != null)
+            {
+                if (productoActual.stock >= pedido.cantProducto)
+                {
+                    productoActual.stock -= pedido.cantProducto;
+                    _context.Add(pedido);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                    ViewData["ClienteId"] = new SelectList(_context.Clientes, "id", "apellidoCliente", pedido.ClienteId);
+                    ViewData["ProductoId"] = new SelectList(_context.Productos, "id", "descripcion", pedido.ProductoId);
+                    return View(pedido);
+                }
+                else
+                {
+                    ModelState.AddModelError("","No hay suficiente stock disponible para este producto.");
+                    ViewData["ClienteId"] = new SelectList(_context.Clientes, "id", "apellidoCliente", pedido.ClienteId);
+                    ViewData["ProductoId"] = new SelectList(_context.Productos, "id", "descripcion", pedido.ProductoId);
+                    return View(pedido);
+                }
+            }
+            return NotFound();
         }
 
         // GET: Pedido/Edit/5
@@ -95,28 +106,46 @@ namespace EmpresaExportaciones.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("id,ClienteId,ProductoId,cantProducto,precio,fecha,estado")] Pedido pedido)
         {
-            if (id != pedido.id)
+            var pedidoActual = await _context.Pedidos.FindAsync(id);
+
+            if (id != pedido.id && pedidoActual != null)
             {
                 return NotFound();
             }
-                try
+
+            try
+            {
+                if (pedidoActual.estado == Estado.PENDIENTE)
                 {
-                    _context.Update(pedido);
+                    pedidoActual.ClienteId = pedido.ClienteId;
+                    pedidoActual.ProductoId = pedido.ProductoId;
+                    pedidoActual.cantProducto = pedido.cantProducto;
+                    pedidoActual.precio = pedido.precio;
+                    pedidoActual.fecha = pedido.fecha;
+                    pedidoActual.estado = pedido.estado;
+
+                    _context.Update(pedidoActual);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!PedidoExists(pedido.id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    ModelState.AddModelError("", "No es posible cambiar el estado del pedido.");
                 }
-                return RedirectToAction(nameof(Index));
-            
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PedidoExists(pedido.id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "id", "apellidoCliente", pedido.ClienteId);
             ViewData["ProductoId"] = new SelectList(_context.Productos, "id", "descripcion", pedido.ProductoId);
             return View(pedido);

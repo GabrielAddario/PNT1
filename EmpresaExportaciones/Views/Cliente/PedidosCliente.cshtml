@@ -1,4 +1,4 @@
-﻿@model List<EmpresaExportaciones.Models.Pedido>
+﻿@model IEnumerable<EmpresaExportaciones.Models.Pedido>
 
 <div class="text-center mt-4">
     <!-- Alinea al centro y agrega un poco de espacio superior -->
@@ -37,7 +37,9 @@
     }
     else
     {
-        <p>No hay pedidos para este cliente.</p>
+        <h5 class="text-center display-4">No hay pedidos para este cliente.</h5>
     }
+    <br />
+    <a asp-action="Index" class="btn btn-azul">Volver a la lista</a>
 </div>
 
